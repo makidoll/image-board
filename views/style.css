@@ -1,0 +1,113 @@
+* {
+	margin: 0;
+	padding: 0;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+body {
+	background-color: #1d1f21;
+	color: #ffffff;
+	font-family: "Roboto", sans-serif;
+	width: 100%; height: 100vh;
+	overflow-x: hidden;
+}
+
+h1 { font-size: 48px; }
+h2 { font-size: 32px; }
+h3 { font-size: 24px; }
+
+#background {
+	position: fixed; margin: auto;
+	top: 0; left: 0; right: 0; bottom: 0;
+	z-index: -1000;
+	background-image: url([path]sakura.gif);
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	image-rendering: pixelated;
+}
+
+#boards {
+	position: fixed; margin: auto;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background-color: rgba(29, 31, 33, 0.9);
+	width: calc(100% - 100px);
+	height: calc(100% - 125px);
+	padding: 50px;
+	padding-top: 75px;
+}
+
+#boards h2 {
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	font-weight: 700;
+	transform-origin: 0 0;
+	transform: rotate(-3deg);
+	display: inline-block;
+	color: rgba(255,255,255,0.2);
+}
+
+#boards h2:hover {
+	color: #E91E63;
+	margin-left: 10px;
+}
+
+#boards #title {
+	position: fixed; margin: auto;
+	bottom: 50px; right: 50px;
+}
+
+#boards #title:hover {
+	transform-origin: 0.5 0.5;
+	transform: rotate(-3deg);
+}
+
+a, a:link, a:active, a:hover, a:visited {
+	color: #E91E63;
+	text-decoration: inherit;
+}
+
+#header {
+	position: absolute; margin: auto;
+	top: 0; left: 0; right: 0;
+	height: calc(50px - 24px);
+	padding: 12px;
+	padding-left: 12px;
+	z-index: 10000;
+}
+
+#header h1 {
+	font-size: 24px;
+	display: inline-block;
+	padding-right: 8px;
+	color: #fff;
+}
+
+#header p {
+	font-size: 16px;
+	display: inline-block;
+	padding-left: 4px;
+	padding-bottom: 4px;
+}
+
+#header p a, #header p {
+	color: rgba(255,255,255,0.6);
+}
+
+#header h1:hover {
+	transform-origin: 0.5 0.5;
+	transform: rotate(-3deg);
+}
+
+#header p a:hover {
+	color: #E91E63;
+}
+
+#content {
+	position: absolute; margin: auto;
+	top: 0; left: 0; right: 0;
+	padding: 50px; padding-top: 75px;
+}
+
+#content #desc {
+	margin-left: 12.5px;
+}
