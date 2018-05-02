@@ -16,6 +16,31 @@ h1 { font-size: 48px; }
 h2 { font-size: 32px; }
 h3 { font-size: 24px; }
 
+.material-icons {
+	font-family: "Material Icons";
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;  /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: 'liga';
+}
+
 #background {
 	position: fixed; margin: auto;
 	top: 0; left: 0; right: 0; bottom: 0;
@@ -43,7 +68,7 @@ h3 { font-size: 24px; }
 	transform-origin: 0 0;
 	transform: rotate(-3deg);
 	display: inline-block;
-	color: rgba(255,255,255,0.2);
+	color: #777;
 }
 
 #boards h2:hover {
@@ -91,7 +116,7 @@ a, a:link, a:active, a:hover, a:visited {
 }
 
 #header p a, #header p {
-	color: rgba(255,255,255,0.6);
+	color: #777;
 }
 
 #header h1:hover {
@@ -109,12 +134,21 @@ a, a:link, a:active, a:hover, a:visited {
 	padding: 50px; padding-top: 75px;
 }
 
-#content > #name {
+#content > table #name {
 	color: #E91E63
 }
 
-#content > #desc {
+#content > table #desc {
 	margin-left: 12.5px;
+}
+
+.material-icons {
+	color: #555;
+	font-size: 32px;
+}
+
+.material-icons:hover {
+	color: #E91E63;
 }
 
 #threads {
@@ -140,7 +174,68 @@ a, a:link, a:active, a:hover, a:visited {
 }
 
 #threads > #thread > #extra {
-	opacity: 0.4;
+	color: #777;
 	text-align: right;
 	padding-right: 2px;
+}
+
+table {
+	width: 100%;
+}
+
+table td {
+	vertical-align: middle;
+}
+
+#thread_form {
+	position: fixed; margin: auto;
+	bottom: 25px; right: 25px;
+	width: 300px; height: auto;
+	background-color: #333;
+	border-radius: 8px;
+	padding: 25px;
+}
+
+form button, form input, form textarea {
+	width: 100%;
+	background-color: #555;
+	border: none;
+	border-radius: 4px;
+	color: #ffffff;
+	font-size: 14px;
+	font-family: "Roboto", sans-serif;
+}
+
+form input[type="file"] {
+	display: block;
+	background-color: transparent;
+	margin-bottom: 4px;
+}
+
+form button {
+	position: relative;
+	padding: 4px 8px;
+	text-align: right;
+	background-color: #555;
+}
+
+form button:after {
+	content: "";
+	position: absolute; margin: auto;
+	top: 0; left: 0; right: 0; bottom: 0;
+	background: linear-gradient(90deg, #333, transparent);
+}
+
+form button:hover {
+	background-color: #E91E63;
+}
+
+form textarea {
+	width: calc(100% - 16px);
+	padding: 4px 8px;
+	resize: none;
+}
+
+input:focus, textarea:focus, button:focus {
+	outline: none;
 }

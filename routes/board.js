@@ -7,7 +7,9 @@ for (var i=0; i<boards.length; i++) {
 	global.app.get(global.path+name, function(req, res) {
 		res.send(global.render("board", {
 			"board_name": "/"+name+"/ "+board.name,
-			"board_desc": board.desc
+			"board_desc": board.desc,
+			"thread_url": global.path+name+"/new_thread",
+			"recaptcha_site": global.settings.recaptcha.site
 		}));
 	});
 }

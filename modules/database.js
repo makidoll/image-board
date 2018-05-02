@@ -1,17 +1,22 @@
-var Datastore = require("nedb");
-var fs = require("fs");
+var sqlite3 = require("sqlite3").verbose();
+global.database = new sqlite3.Database(global.__dirname+"/database.db");
 
-let dir = global.__dirname+"/database";
-if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+global.database.serialize(function() {	
+	let boards = Object.keys(global.settings.boards);
+	for (var i = 0; i < boards.length; i++) {
+		let name = boards[i];
+		let board = global.settings.boards[name];
+		
+		global.database.run("CREATE TABLE IF NOT EXISTS '"+name+"' ("+
+			"'id' INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,"+
+			"'is_op' BIT NOT NULL,"+
+			"'has_image' BIT NOT NULL,"+
+			"'comment' TEXT NOT NULL,"+
+			"'date' DATE NOT NULL"+
+		");");
 
-global.database = {};
+		global.debugLog("Loaded database: "+name);
+	}
+});
 
-let boards = Object.keys(global.settings.boards);
-for (var i = 0; i < boards.length; i++) {
-	let name = boards[i];
-	let board = global.settings.boards[name];
-
-	global.database[name] = new Datastore(global.__dirname+"/database/"+name+".db")
-	global.database[name].loadDatabase();
-	global.debugLog("Loaded database: "+name);
-}
+global.database.close();
