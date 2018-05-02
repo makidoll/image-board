@@ -10,7 +10,6 @@ npm install
 cp debug.example.js debug.js
 ```
 
-
 Edit `debug.js` and run: `node dubug.js` then visit: http://127.0.0.1:3000
 
 I hope I can make this into something people can easily use!
