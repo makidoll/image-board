@@ -4,6 +4,12 @@
 		<title>[title]</title>
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons" rel="stylesheet">
 		<style>[style]</style>
+		<script type="text/javascript">
+			
+		function removeHash () { 
+			history.pushState("", document.title, window.location.pathname + window.location.search);
+		}
+		</script>
 	</head>
 	<body>
 		<div id="header">
@@ -12,4 +18,16 @@
 		</div>
 		[view]
 	</body>
+	<script type="text/javascript">
+		
+		let hashMsg = location.hash.slice(1);
+		if (hashMsg) {
+			let element = document.createElement("div");
+			element.id = "toast-message";
+			element.innerHTML = decodeURI(hashMsg);
+			document.body.appendChild(element);
+			removeHash();
+		}
+
+	</script>
 </html>

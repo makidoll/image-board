@@ -2,5 +2,6 @@ node_modules/
 *.sublime-project
 *.sublime-workspace
 *.db
+public/*/
 package-lock.json
 debug.js

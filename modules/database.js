@@ -1,22 +1,28 @@
-var sqlite3 = require("sqlite3").verbose();
-global.database = new sqlite3.Database(global.__dirname+"/database.db");
+global.db = {
+	sql: require("sqlite3").verbose(),
+	path: global.__dirname+"/database.db"
+};
 
-global.database.serialize(function() {	
+// let db = new global.db.sql.Database(global.db.path, global.db.sql.OPEN_READONLY);
+// db.serialize(function() { });
+// db.close();
+
+let db = new global.db.sql.Database(global.db.path); // adds the create mode
+db.serialize(function(){
 	let boards = Object.keys(global.settings.boards);
 	for (var i = 0; i < boards.length; i++) {
 		let name = boards[i];
 		let board = global.settings.boards[name];
 		
-		global.database.run("CREATE TABLE IF NOT EXISTS '"+name+"' ("+
+		db.run("CREATE TABLE IF NOT EXISTS '"+name+"' ("+
 			"'id' INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,"+
-			"'is_op' BIT NOT NULL,"+
-			"'has_image' BIT NOT NULL,"+
+			"'op_id' INTEGER NOT NULL,"+
+			"'image_ext' TEXT,"+
 			"'comment' TEXT NOT NULL,"+
-			"'date' DATE NOT NULL"+
+			"'date' DATETIME NOT NULL"+
 		");");
 
 		global.debugLog("Loaded database: "+name);
 	}
 });
-
-global.database.close();
+db.close();

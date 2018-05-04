@@ -37,3 +37,8 @@ global.render = function(view, replaces) {
 	global.debugLog("Rendered: "+view);
 	return html;
 }
+
+global.getExt = function(filename) {
+	let split = (filename+"").split(".");
+	return split[split.length-1];
+}

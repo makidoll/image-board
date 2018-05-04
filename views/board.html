@@ -16,32 +16,41 @@
 			</td>
 		</tr>
 	</table>
-	<div id="threads">
-		<div id="thread">
-			<div id="thumbnail"></div>
-			<p id="extra">00:00, 27 April '18</p>
-			<p>this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupidthis is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid this is stupid</p>
-		</div>
-	</div>
-	<div id="thread_form" style="display: none;">
-		<a href="javascript:thread_form();"><i style="display: block; text-align: right; margin: -12.5px -12.5px -12.5px 0;" class="material-icons">close</i></a>
-		<form method="post" action="[thread_url]">
-			<input required type="file" accept="image/*" name="image">
-			<textarea required rows="8" name="comment"></textarea>
-			<button type="submit" class="g-recaptcha" data-sitekey="[recaptcha_site]" data-badge="bottomleft">New Thread</button>
-		</form>
-	</div>
+	<div id="threads">[threads]</div>
+</div>
+<div id="thread_form" style="display: none;">
+	<a href="javascript:thread_form();"><i style="display: block; text-align: right; margin: -12.5px -12.5px -12.5px 0;" class="material-icons">close</i></a>
+	<form method="post" action="[thread_url]" enctype="multipart/form-data">
+		<input required type="file" accept="image/*" name="image">
+		<textarea required rows="8" name="comment" placeholder="Comment (1200 chars max)" maxlength="1200"></textarea>
+		<!-- <button type="submit">New Thread</button> -->
+		<button type="submit" class="g-recaptcha" data-sitekey="[recaptcha_key]" data-badge="bottomleft" data-callback="threadSubmit">New Thread</button>
+	</form>
 </div>
 <script type="text/javascript">
-	
+
 	var threadForm = document.getElementById("thread_form");
 	function thread_form() {
-		threadForm.style.display =
-			(threadForm.style.display == "none")? "block": "none";
+		if (threadForm.style.display == "none") {
+			threadForm.style.display = "block";
+			threadForm.style.right = "-350px";
+			setTimeout(function() {
+				threadForm.style.right = "25px";
+			}, 10);
+		} else {
+			threadForm.style.right = "-350px";
+			setTimeout(function() {
+				threadForm.style.display = "none";
+			}, 210);
+		}
 	}
 
 	window.addEventListener("keyup", function(e) {
 		if (e.key == "Escape") thread_form();
 	});
+
+	function threadSubmit(token) {
+		threadForm.lastElementChild.submit();
+	}
 
 </script>
