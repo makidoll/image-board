@@ -12,10 +12,23 @@ for (var i=0; i<boards.length; i++) {
 
 		if (!req.file)
 			{ res.redirect(global.path+name+"#There was no image attached"); return; }
+
+		let fileExt = global.getExt(req.file.originalname);
+		if (fileExt != "jpg" &&
+		    fileExt != "jpeg" &&
+		    fileExt != "png" &&
+		    fileExt != "gif")
+			{ res.redirect(global.path+name+"#Image isn't a JPG, PNG or GIF"); return; }
+
+		if (req.file.size/1024/1024 > 5)
+			{ res.redirect(global.path+name+"#Image exceeds 5 MB"); return; }
+
 		if (!req.body.comment)
 			{ res.redirect(global.path+name+"#There was no comment attached"); return; }
+
 		if (req.body.comment.length > 1200)
 			{ res.redirect(global.path+name+"#Comment exceeded 1200 characters"); return; }
+
 		if (!req.body["g-recaptcha-response"]) 
 			{ res.redirect(global.path+name+"#Captcha wasn't solved"); return; }
 
@@ -29,7 +42,7 @@ for (var i=0; i<boards.length; i++) {
 				  if (err) global.debugLog("Captcha failed: "+err); return; }
 
 			let comment = req.body.comment.trim();
-			let fileExt = global.getExt(req.file.originalname).toLowerCase();
+			let fileExt = global.getExt(req.file.originalname);
 
 			let db = new global.db.sql.Database(global.db.path, global.db.sql.OPEN_READWRITE);
 			db.serialize(function() {

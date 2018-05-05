@@ -40,5 +40,5 @@ global.render = function(view, replaces) {
 
 global.getExt = function(filename) {
 	let split = (filename+"").split(".");
-	return split[split.length-1];
+	return split[split.length-1].toLowerCase();
 }
