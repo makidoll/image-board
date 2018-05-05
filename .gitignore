@@ -4,4 +4,3 @@ node_modules/
 *.db
 public/*/
 package-lock.json
-debug.js
