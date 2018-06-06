@@ -5,7 +5,7 @@
 This is so work in progress. If you really want to check out what I'm working on... 
 
 ```bash
-git clone https://github.com/makixx/image-board && cd image-board
+git clone https://gitlab.com/makitty/image-board && cd image-board
 npm install
 cp debug.example.js debug.js
 ```
